@@ -25,12 +25,7 @@
         }
         header p {
             font-size: 1.2rem;
-            margin: 10px 0 0 0;
-            color: #444;
-        }
-        nav {
-            text-align: center;
-            margin: 20px 0;
+
         }
         nav a {
             color: #222;
@@ -138,11 +133,105 @@
         <section id="portfolio" style="margin-top:50px;">
             <h2>Portfolio</h2>
             <p>Check out some of our recent iOS app projects:</p>
-            <ul>
-                <li><strong>GoldTracker</strong> – Personal finance app for iPhone</li>
-                <li><strong>FitDorado</strong> – Fitness tracking and coaching app</li>
-                <li><strong>EventEase</strong> – Event management and ticketing platform</li>
-            </ul>
+            <!-- Slideshow Start -->
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" style="width:100%" alt="GoldTracker">
+                    <div class="caption"><strong>GoldTracker</strong> – Personal finance app for iPhone</div>
+                </div>
+                <div class="slide fade">
+                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" style="width:100%" alt="FitDorado">
+                    <div class="caption"><strong>FitDorado</strong> – Fitness tracking and coaching app</div>
+                </div>
+                <div class="slide fade">
+                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" style="width:100%" alt="EventEase">
+                    <div class="caption"><strong>EventEase</strong> – Event management and ticketing platform</div>
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <div style="text-align:center; margin-top:1rem;">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <!-- Slideshow End -->
+    }
+    /* Slideshow styles */
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        margin: 2rem auto 0 auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .slide {
+        display: none;
+        position: relative;
+    }
+    .slide img {
+        width: 100%;
+        display: block;
+    }
+    .caption {
+        color: #fff;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        width: 100%;
+        background: rgba(44,62,80,0.6);
+        text-align: left;
+        border-radius: 0 0 8px 8px;
+    }
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 1rem;
+        margin-top: -22px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 2rem;
+        transition: 0.2s;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        background: rgba(44,62,80,0.4);
+    }
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    .prev {
+        left: 0;
+    }
+    .prev:hover, .next:hover {
+        background: rgba(191,161,0,0.7);
+    }
+    .dot {
+        cursor: pointer;
+        height: 12px;
+        width: 12px;
+        margin: 0 4px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+    .dot.active {
+        background-color: #ffd700;
+    }
+    .fade {
+        animation-name: fade;
+        animation-duration: 0.7s;
+    }
+    @keyframes fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+    }
         </section>
         <section id="contact" style="margin-top:50px;">
             <h2>Contact Us</h2>
@@ -155,5 +244,35 @@
     <footer>
         &copy; 2025 Dorado Design. All rights reserved.
     </footer>
+        &copy; 2025 Dorado Design. All rights reserved.
+    </footer>
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+    </script>
 </body>
 </html>
